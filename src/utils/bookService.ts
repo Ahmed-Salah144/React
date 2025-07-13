@@ -1,8 +1,5 @@
 import type { BookListing } from '../types/BookListing';
 
-// Extended type that includes an ID for storage
-type BookWithId = BookListing & { id: number };
-
 export class BookService {
   private static API_BASE_URL = 'http://localhost:3001';
 

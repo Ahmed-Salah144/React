@@ -16,8 +16,8 @@ import {
 } from '@mui/material';
 
 import { Search, FilterList, Clear } from '@mui/icons-material';
-import ItemCard from '../../sections/product/ItemCard';
-import { BookService } from '../../lib/bookService';
+import ItemCard from '../../sections/product/BookCard';
+import { BookService } from '../../utils/bookService';
 import type { BookListing } from '../../types/BookListing';
 import { vendors, ageRatings } from '../../types/BookForm';
 
@@ -61,16 +61,6 @@ export default function BookListingsPage() {
     return matchesSearch && matchesVendor && matchesAgeRating;
   });
 
-  const handleAddToCart = (book: BookListing) => {
-    // TODO: Implement add to cart functionality
-    console.log('Adding to cart:', book.title);
-  };
-
-  const handleToggleFavorite = (book: BookListing) => {
-    // TODO: Implement favorite functionality
-    console.log('Toggling favorite for:', book.title);
-  };
-
   const clearFilters = () => {
     setSearchQuery('');
     setSelectedVendor('');
@@ -89,15 +79,14 @@ export default function BookListingsPage() {
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ py: 4 }}>
+      <Box marginTop={4}>
         {/* Header */}
-        <Typography variant="h3" component="h1" gutterBottom align="center">
+        <Typography variant="h3" align="center">
           Book Collection
         </Typography>
-        <Typography variant="body1" color="text.secondary" align="center" sx={{ mb: 4 }}>
-          Discover our amazing collection of books
+        <Typography variant="body1" color="text.secondary" align="center" marginBottom={2}>
+          Some Amazing Quote About Books
         </Typography>
-
         {/* Search and Filters */}
         <Box sx={{ mb: 4 }}>
           <Stack spacing={2}>
@@ -107,15 +96,11 @@ export default function BookListingsPage() {
               placeholder="Search books by title, author, or synopsis..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              InputProps={{
-                startAdornment: <Search sx={{ mr: 1, color: 'text.secondary' }} />,
-              }}
             />
 
             {/* Filters */}
-            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
-              <FilterList color="action" />
-              
+            <Box display= {'flex'} gap={3}>
+              <FilterList />
               <FormControl sx={{ minWidth: 150 }}>
                 <InputLabel>Vendor</InputLabel>
                 <Select
@@ -211,18 +196,13 @@ export default function BookListingsPage() {
               <ItemCard
                 key={book.id}
                 book={book}
-                onAddToCart={handleAddToCart}
-                onToggleFavorite={handleToggleFavorite}
               />
             ))}
           </Box>
         ) : (
-          <Box sx={{ textAlign: 'center', py: 8 }}>
-            <Typography variant="h6" color="text.secondary" gutterBottom>
+          <Box sx={{ textAlign: 'center'}}>
+            <Typography variant="h3" color="text.secondary" gutterBottom>
               No books found
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Try adjusting your search criteria or filters
             </Typography>
           </Box>
         )}
