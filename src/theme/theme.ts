@@ -1,10 +1,11 @@
 // src/theme/theme.ts
-import { createTheme, withTheme } from "@mui/material/styles";
+import { createTheme} from "@mui/material/styles";
 
-const theme = createTheme({
+const theme = createTheme({defaultColorScheme: "dark"});
+/*createTheme({
   palette: {
     primary: {
-      main: "#ffffff", // custom primary color
+      main: "#f0f0f0", // custom primary color
     },
     secondary: {
       main: "#404040",
@@ -19,6 +20,6 @@ const theme = createTheme({
       fontWeight: 600,
     },
   },
-});
+});*/
 
 export default theme;

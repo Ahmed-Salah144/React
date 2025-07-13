@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import { AppBar, Toolbar, Button} from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 
 
@@ -12,7 +12,6 @@ export default function Navbar() {
   return (
     <AppBar position="static">
       <Toolbar>    
-        <Box sx={{ display: 'flex', gap: 1 }}>
           {navItems.map((item) => (
             <Button
               key={item.label}
@@ -30,7 +29,6 @@ export default function Navbar() {
               {item.label}
             </Button>
           ))}
-        </Box>
       </Toolbar>
     </AppBar>
   );
