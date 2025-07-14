@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import {
   Container,
   Typography,
-  Box,
   CircularProgress,
   Alert,
   TextField,
@@ -16,7 +15,7 @@ import {
 } from '@mui/material';
 
 import {Clear } from '@mui/icons-material';
-import ItemCard from '../../sections/product/BookCard';
+import BookCard from '../../sections/product/BookCard';
 import { BookService } from '../../utils/bookService';
 import type { BookListing } from '../../types/BookListing';
 import { vendors, ageRatings } from '../../types/BookForm';
@@ -70,25 +69,25 @@ export default function BookListingsPage() {
   if (loading) {
     return (
       <Container maxWidth="lg">
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
+        <div className="flex justify-center items-center min-h-[50vh]">
           <CircularProgress size={60} />
-        </Box>
+        </div>
       </Container>
     );
   }
 
   return (
     <Container maxWidth="lg">
-      <Box marginTop={4}>
+      <div className="mt-8">
         {/* Header */}
         <Typography variant="h3" align="center">
           Book Collection
         </Typography>
-        <Typography variant="body1" color="text.secondary" align="center" marginBottom={2}>
+        <Typography variant="body1" color="text.secondary" align="center" className="mb-4">
           Some Amazing Quote About Books
         </Typography>
         {/* Search and Filters */}
-        <Box sx={{ mb: 4 }}>
+        <div className="mb-8">
           <Stack spacing={2}>
             {/* Search Bar */}
             <TextField
@@ -99,8 +98,8 @@ export default function BookListingsPage() {
             />
 
             {/* Filters */}
-            <Box display= {'flex'} gap={3}>
-              <FormControl sx={{ minWidth: 150 }}>
+            <div className="flex gap-6">
+              <FormControl className="min-w-[150px]">
                 <InputLabel>Vendor</InputLabel>
                 <Select
                   value={selectedVendor}
@@ -117,7 +116,7 @@ export default function BookListingsPage() {
                 </Select>
               </FormControl>
 
-              <FormControl sx={{ minWidth: 150 }}>
+              <FormControl className="min-w-[150px]">
                 <InputLabel>Age Rating</InputLabel>
                 <Select
                   value={selectedAgeRating}
@@ -142,11 +141,11 @@ export default function BookListingsPage() {
               >
                 Clear Filters
               </Button>
-            </Box>
+            </div>
 
             {/* Active Filters Display */}
             {(searchQuery || selectedVendor || selectedAgeRating) && (
-              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+              <div className="flex gap-2 flex-wrap">
                 {searchQuery && (
                   <Chip 
                     label={`Search: "${searchQuery}"`} 
@@ -171,41 +170,41 @@ export default function BookListingsPage() {
                     variant="outlined"
                   />
                 )}
-              </Box>
+              </div>
             )}
           </Stack>
-        </Box>
+        </div>
 
         {/* Error Display */}
         {error && (
-          <Alert severity="error" sx={{ mb: 3 }}>
+          <Alert severity="error" className="mb-6">
             {error}
           </Alert>
         )}
 
         {/* Results Count */}
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+        <Typography variant="body2" color="text.secondary" className="mb-4">
           Showing {filteredBooks.length} of {books.length} books
         </Typography>
 
         {/* Books Grid */}
         {filteredBooks.length > 0 ? (
-          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 3 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredBooks.map((book) => (
-              <ItemCard
+              <BookCard
                 key={book.id}
                 book={book}
               />
             ))}
-          </Box>
+          </div>
         ) : (
-          <Box sx={{ textAlign: 'center'}}>
+          <div className="text-center">
             <Typography variant="h3" color="text.secondary" gutterBottom>
               No books found
             </Typography>
-          </Box>
+          </div>
         )}
-      </Box>
+      </div>
     </Container>
   );
 }

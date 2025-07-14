@@ -1,8 +1,8 @@
-import {Card,CardContent,CardMedia,Typography,Box,Chip, Button} from '@mui/material';
+import {Card,CardContent,CardMedia,Typography,Chip, Button} from '@mui/material';
 import type { BookListing } from '../../types/BookListing';
 import { useState } from 'react';
 
-export default function ItemCard({ book }: {book: BookListing;}) {
+export default function BookCard({ book }: {book: BookListing;}) {
   // Truncate synopsis to show only first 150 characters
   const truncatedSynopsis = book.synopsis.length > 100 ? `${book.synopsis.substring(0, 100)}...`  : book.synopsis;
   const [showMore, setshowMore] = useState(false);
@@ -20,13 +20,13 @@ export default function ItemCard({ book }: {book: BookListing;}) {
           by {book.author}
         </Typography>
         {/* Vendor and Age Rating */}
-        <Box sx={{gap: 5, mb: 2, mt: 2}}>
-          <Chip label={book.vendor} size="small" variant="outlined" color="primary" sx={{marginRight : 1}} />
-          <Chip label={book.ageRating} size="small" variant="outlined" color="secondary" sx={{marginRight : 1}} />
-        </Box>
+        <div className="flex gap-5 mb-4 mt-4">
+          <Chip label={book.vendor} size="small" variant="outlined" color="primary" className="mr-2" />
+          <Chip label={book.ageRating} size="small" variant="outlined" color="secondary" className="mr-2" />
+        </div>
 
         {/* Synopsis */}
-        <Typography marginRight={2} sx={{wordWrap: 'break-word'}}>
+        <Typography className="mr-4 break-words">
           {showMore?  book.synopsis : truncatedSynopsis}
         </Typography>
 
@@ -37,14 +37,14 @@ export default function ItemCard({ book }: {book: BookListing;}) {
         </Button>
 
         {/* Book Details */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, marginTop : 5}}>
+        <div className="flex justify-between items-center mb-4 mt-8">
           <Typography>
             {book.numberOfPages} pages
           </Typography>
           <Typography color="primary" fontWeight="bold">
             ${book.price.toFixed(2)}
           </Typography>
-        </Box>
+        </div>
       </CardContent>
     </Card>
   );

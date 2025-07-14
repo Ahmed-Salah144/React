@@ -18,13 +18,9 @@ export default function Navbar() {
               component={Link}
               to={item.path}
               color="inherit"
-              sx={{
-                textTransform: 'none',
-                fontWeight: location.pathname === item.path ? 'bold' : 'normal',
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                }
-              }}
+              className={`normal-case hover:bg-white/10 ${
+                location.pathname === item.path ? 'font-bold' : 'font-normal'
+              }`}
             >
               {item.label}
             </Button>
