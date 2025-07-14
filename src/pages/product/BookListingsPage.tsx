@@ -15,7 +15,7 @@ import {
   Button,
 } from '@mui/material';
 
-import { Search, FilterList, Clear } from '@mui/icons-material';
+import {Clear } from '@mui/icons-material';
 import ItemCard from '../../sections/product/BookCard';
 import { BookService } from '../../utils/bookService';
 import type { BookListing } from '../../types/BookListing';
@@ -100,7 +100,6 @@ export default function BookListingsPage() {
 
             {/* Filters */}
             <Box display= {'flex'} gap={3}>
-              <FilterList />
               <FormControl sx={{ minWidth: 150 }}>
                 <InputLabel>Vendor</InputLabel>
                 <Select
