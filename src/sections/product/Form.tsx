@@ -82,8 +82,11 @@ export default function BookSubmissionForm() {
         <CustomNumberField name="numberOfPages" control={control} label="Number of Pages" error={errors.numberOfPages} min={1} />
         <CustomNumberField name="price" control={control} label="Price ($)" error={errors.price} step={0.01} min={0} />
         <CustomSelectField name="ageRating" control={control} label="Age Rating" options={ageRatings.map(rating => ({ value: rating, label: rating }))} error={errors.ageRating} />
-        <CustomTextField name="synopsis" control={control} label="Synopsis" multiline rows={4} error={errors.synopsis} helperText="Minimum 100 characters required" />
-        <Button type="submit" variant="contained" size="large" disabled={isSubmitting} className="mt-4">{isSubmitting ? 'Submitting...' : 'Submit Book'}</Button>
+        <CustomTextField name="synopsis" control={control} label="Synopsis" multiline rows={4} error={errors.synopsis} 
+        helperText="Minimum 100 characters required" />
+        <Button type="submit" variant="contained" size="large" disabled={isSubmitting} className="mt-4">
+          {isSubmitting ? 'Submitting...' : 'Submit Book'}
+        </Button>
       </Stack>
       <CustomSnackbar snackbar={snackbar} onClose={handleCloseSnackbar} />
     </form>

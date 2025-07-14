@@ -20,9 +20,9 @@ export default function BookCard({ book }: {book: BookListing;}) {
           by {book.author}
         </Typography>
         {/* Vendor and Age Rating */}
-        <div className="flex gap-5 mb-4 mt-4">
-          <Chip label={book.vendor} size="small" variant="outlined" color="primary" className="mr-2" />
-          <Chip label={book.ageRating} size="small" variant="outlined" color="secondary" className="mr-2" />
+        <div className="flex gap-2 mb-4 mt-4">
+          <Chip label={book.vendor} size="small" variant="outlined" color="primary" />
+          <Chip label={book.ageRating} size="small" variant="outlined" color="secondary"/>
         </div>
 
         {/* Synopsis */}
